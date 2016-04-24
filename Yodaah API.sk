@@ -1,0 +1,249 @@
+# __   __              _                   _            _      ____    ___ 
+# \ \ / /   ___     __| |   __ _    __ _  | |__        / \    |  _ \  |_ _|
+#  \ V /   / _ \   / _` |  / _` |  / _` | | '_ \      / _ \   | |_) |  | | 
+#   | |   | (_) | | (_| | | (_| | | (_| | | | | |    / ___ \  |  __/   | | 
+#   |_|    \___/   \__,_|  \__,_|  \__,_| |_| |_|   /_/   \_\ |_|     |___|
+#                                                                          
+
+#Official API of YoshYz(Yodaah akab Edoboss99 on spigot)
+#Copyright [2016 Dr_Yoshy]
+#Version: 1.0 Beta
+
+#  ___               _               
+# |_ _|  _ __     __| |   ___  __  __
+#  | |  | '_ \   / _` |  / _ \ \ \/ /
+#  | |  | | | | | (_| | |  __/  >  < 
+# |___| |_| |_|  \__,_|  \___| /_/\_\
+#
+#                                    
+
+#  ___  _   _    __    ____ 
+# / __)( )_( )  /__\  (_  _)
+#( (__  ) _ (  /(__)\   )(  
+# \___)(_) (_)(__)(__) (__) 
+#
+
+#CLEAR CHAT
+
+function clearChat(p: player) :: text:
+    loop 25 times:
+        send message "" to {_p}
+
+#Ex: clearChat(sender)
+		
+# ___  _____  __  __  _  _  ____   ___ 
+#/ __)(  _  )(  )(  )( \( )(  _ \ / __)
+#\__ \ )(_)(  )(__)(  )  (  )(_) )\__ \
+#(___/(_____)(______)(_)\_)(____/ (___/
+#
+
+#PLAYSOUND                                                                                   
+
+function playSound(p: player , s: sound , volume: number , pitch: number) :: text:
+    set {sound} to "%{_s}%"
+    set {_volume} to "%{_volume}%"
+    set {_pitch} to "%{_pitch}%"
+    replace all "_" with "." in {sound}
+    replace all "A" with "a" in {sound}
+    replace all "B" with "b" in {sound}
+    replace all "C" with "c" in {sound}
+    replace all "D" with "d" in {sound}
+    replace all "E" with "e" in {sound}
+    replace all "F" with "f" in {sound}
+    replace all "G" with "g" in {sound}
+    replace all "H" with "h" in {sound}
+    replace all "I" with "i" in {sound}
+    replace all "L" with "l" in {sound}
+    replace all "M" with "m" in {sound}
+    replace all "N" with "n" in {sound}
+    replace all "O" with "o" in {sound}
+    replace all "P" with "p" in {sound}
+    replace all "Q" with "q" in {sound}
+    replace all "R" with "r" in {sound}
+    replace all "S" with "s" in {sound}
+    replace all "T" with "t" in {sound}
+    replace all "U" with "u" in {sound}
+    replace all "V" with "v" in {sound}
+    replace all "Z" with "z" in {sound}
+    replace all "X" with "x" in {sound}
+    replace all "W" with "w" in {sound}
+    replace all "Y" with "y" in {sound}
+    replace all "J" with "j" in {sound}
+    replace all "K" with "k" in {sound}
+    set {_player} to "%{_p}%"
+    make console execute command "/playsound %{sound}% master %{_player}% %x-pos of {_p}% %y-pos of {_p}% %z-pos of {_p}% %{_volume}% %{_pitch}%" 
+    delete {sound}
+	
+#Ex: playSound(player , ENTITY_FIREWORK_LAUNCH , 5 ,1)
+
+# ____    __    ____  ____  ____   ___  __    ____  ___ 
+#(  _ \  /__\  (  _ \(_  _)(_  _) / __)(  )  ( ___)/ __)
+# )___/ /(__)\  )   /  )(   _)(_ ( (__  )(__  )__) \__ \
+#(__)  (__)(__)(_)\_) (__) (____) \___)(____)(____)(___/
+#	
+
+#SPAWN PARTICLE                                                               
+	
+function spawnParticle(p: text , t: text , speed: number , count: number) :: text:
+    set {_location} to "%{_t}%"
+    set {_particle} to "%{_p}%"
+    set {_speed} to "%{_speed}%"
+    set {_count} to "%{_count}%"
+    make console execute command "/particle %{_particle}% %{_location}% 0 0 0 %{_speed}% %{_count}%"
+	
+#Ex: spawnParticle("hugeexplosion" , "%x-pos of player% %y-pos of player% %z-pos of player}%")
+	
+# _    _  _____  ____  __    ____  
+#( \/\/ )(  _  )(  _ \(  )  (  _ \ 
+# )    (  )(_)(  )   / )(__  )(_) )
+#(__/\__)(_____)(_)\_)(____)(____/ 	
+#
+ 
+#getPlayersIn
+ 
+function getPlayersIn(p: player , w: text) :: text:
+    set {_world} to "%{_w}%"
+    loop all players:
+        loop-player's world is "%{_world}%"
+        add loop-player to {_players::*}
+    set {_size} to size of {_players::*}
+    message "&7Number of players online in the world &c%{_world}%&7: &b%{_size}%" to {_p}
+	
+#Ex: getPlayersIn(sender , "world")
+
+# __  __  _____  ____  ___ 
+#(  \/  )(  _  )(  _ \/ __)
+# )    (  )(_)(  ) _ <\__ \
+#(_/\/\_)(_____)(____/(___/
+#
+
+#doMobSpawning
+
+function doMobSpawning(t: text) :: text:
+    set {_value} to "%{_t}%"
+    make console execute command "/gamerule doMobSpawning %{_value}%"
+	
+#Ex: doMobSpawning("true") or doMobSpawning("false")
+
+#doMobLoot
+
+function doMobLoot(t: text) :: text:
+    set {_value} to "%{_t}%"
+    make console execute command "/gamerule doMobLoot %{_value}%"
+	
+#Ex: doMobLoot("true") or ("false")
+
+#mobGriefing
+
+function mobGriefing(t: text) :: text:
+    set {_value} to "%{_t}%"
+    make console execute command "/gamerule mobGriefing %{_value}%"
+	
+#Ex: mobGriefing("true") or ("false")
+
+function spawnMob(mob: text , loc: text , mainhand: text , otherhand: text , helmet: text , chestplate: text , leggings: text , boots: text , effect: number , amplifier: number , duration: number , name: text , health: number) :: text:
+    set {_mob} to "%{_mob}%"
+    set {_location} to "%{_loc}%"
+    set {_mainhand} to "%{_mainhand}%"
+    set {_otherhand} to "%{_otherhand}%"
+    set {_helmet} to "%{_helmet}%"
+    set {_chestplate} to "%{_chestplate}%"
+    set {_leggings} to "%{_leggings}%"
+    set {_boots} to "%{_boots}%"
+    set {_effect} to "%{_effect}%"
+    set {_amplifier} to "%{_amplifier}%"
+    set {_duration} to "%{_duration}%"
+    set {_name} to "%{_name}%"
+    set {_health} to "%{_health}%"
+    broadcast "%{_mob}% - %{_location}% - %{_mainhand}% - %{_otherhand}% - %{_helmet}% - %{_chestplate}% - %{_leggings}% - %{_boots}% - %{_effect}% - %{_amplifier}% - %{_duration}% - %{_name}% - %{_health}%"
+    make console execute command "/summon %{_m}% %{_location}% {HandItems:[{id:%{_mainhand}%},{id:%{_otherhand}%}],ArmorItems:[{id:%{_boots}%},{id:%{_leggings}%},{id:%{_chestplate}%},{id:%{_helmet}%}],CustomName:%{_name}%,CustomNameVisible:1,ActiveEffects:[{Id:%{_effect}%,Amplifier:%{_amplifier}%,Duration:%{_duration}%}],Health:%{_health}%f}"
+
+#Ex: spawnMob("Zombie" , "%x-pos of {_loc}% %y-pos of {_loc}% %z-pos of {_loc}%" , "bow" , "diamond_axe" , "iron_helmet" , "iron_chestplate" , "iron_leggings" , "iron_boots" , 5 , 2 , 999999 , "Paul" , 20)    
+
+# ___  ____  ____  _  _  ____  ____ 
+#/ __)( ___)(  _ \( \/ )( ___)(  _ \
+#\__ \ )__)  )   / \  /  )__)  )   /
+#(___/(____)(_)\_)  \/  (____)(_)\_)
+#
+
+#getOnlinePlayers
+
+function getOnlinePlayers(p: player) :: text:
+    loop all players:
+        add loop-player to {_players::*}
+    set {_size} to size of {_players::*}
+    message "&7Number of players online in the server: &b%{_size}%" to {_p}
+	
+#Ex: getOnlinePlayers(sender)
+
+# ____  __      __    _  _  ____  ____  ___ 
+#(  _ \(  )    /__\  ( \/ )( ___)(  _ \/ __)
+# )___/ )(__  /(__)\  \  /  )__)  )   /\__ \
+#(__)  (____)(__)(__) (__) (____)(_)\_)(___/
+#                                                                                   
+
+#keepInventory
+
+function keepInventory(t: text) :: text:
+    set {_value} to "%{_t}%"
+    make console execute command "/gamerule keepInventory %{_value}%"
+
+#Ex: keepInventory("true") or ("false")
+
+#clearEffect
+
+function clearEffect(p: player) :: text:
+    make console execute command "/effect %{_p}% clear"
+	
+#Ex: clearEffect(sender)
+
+#clearEffectsIn
+
+function clearEffectsIn(w: text) :: text:
+    set {_world} to "%{_w}%"
+    loop all players:
+        loop-player's world is "%{_world}%"
+        remove speed from loop-player
+        remove slowness from loop-player
+        remove haste from loop-player
+        remove mining fatigue from loop-player
+        remove strength from loop-player
+        remove instant health from loop-player
+        remove instant damage from loop-player
+        remove jump boost from loop-player
+        remove nausea from loop-player
+        remove regeneration from loop-player
+        remove resistance from loop-player
+        remove fire resistance from loop-player
+        remove water breathing from loop-player
+        remove invisibility from loop-player
+        remove blindness from loop-player
+        remove night vision from loop-player
+        remove weakness from loop-player
+        remove poison from loop-player
+		
+#Ex: clearEffectsIn("world")
+
+#applyEffect
+
+function applyEffect(p: player , e: number , duration: number , amplifier: number , hide: text) :: text:
+    set {_player} to "%{_p}%"
+    set {_effect} to "%{_e}%"
+    set {_duration} to "%{_duration}%"
+    set {_amplifier} to "%{_amplifier}%"
+    set {_visible} to "%{_hide}%"
+    make console execute command "/effect %{_player}% %{_effect}% %{_duration}% %{_amplifier}% %{_visible}%"
+	
+#Ex: applyEffect(player, "1" , 50 , 2 , "true")
+
+function applyEffectsIn(w: text , e: number , duration: text , amplifier: number) :: text:
+    set {_effect} to "%{_e}%"
+    set {_duration} to "%{_duration}%"
+    set {_amplifier} to "%{_amplifier}%"
+    set {_world} to "%{_w}%"
+    loop all players:
+        loop-player's world is "%{_world}%"
+        apply speed 1 to  for {_duration}
+		
+#Ex: applyEffectsIn("world" , 1 , "120 seconds" , 2)
+     
